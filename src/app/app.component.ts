@@ -3,6 +3,8 @@
  */
 
 import { Component } from '@angular/core';
+import {ContactStructure} from './models/FichierContactStructure'; // importer la class leContactStructure (parce qu'on l'a déplacé,
+                                                                   // et on a besoin de l'utiliser
 
 /**
  * @component est ce qu'on appel un décorateur. Il va nous permettre de définir 3 paramètres essentiels à notre application
@@ -34,18 +36,13 @@ export class AppComponent {
   // --Déclaration d'une variable
   title = 'Gestion de contact';
 
-  unContact = {
-    id: 1,
-    name: 'Hugo LIEGEARD',
-    username: 'hugoliegeard',
-    email: 'wf3@hl-media.fr'
-  };
+  contactActif : ContactStructure;
 
 // --Tableau de contacts
 
-mesContacts = [
-  {
-    id: 1,
+mesContacts: ContactStructure[] = [ // De base ContactStructure est un simple objet. Il n'est pas dans un tableau. Donc pour préciser
+  {                                 // que le type ContactStructure est dans un tableau, il faudra mettre des crochets après ContactStructure.
+    id: 1,                          // Comme ça : ContactStructure[].
     name: 'Hugo LIEGEARD',
     username: 'hugoliegeard',
     email: 'wf3@hl-media.fr'
@@ -65,4 +62,13 @@ mesContacts = [
 
 ];
 
+// Permet d'afficher le profil d'un contact
+  displayProfile(ContactCliqueParMonUtilisateur) {
+    console.log (ContactCliqueParMonUtilisateur);
+    this.contactActif = ContactCliqueParMonUtilisateur; // Pour sortir la valeur de displayProfile de la scope la fonction,
+                                                        // on la met dans une variable à l'extérieur. On va ainsi pouvoir la réutiliser
+                                                        // ailleur, entre autre dans le Jumbotron.
+
+    // le this permet de désigner la class où nous sommes, à savoir AppComponent.
+  }
 }

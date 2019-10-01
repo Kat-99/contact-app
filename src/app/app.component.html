@@ -1,7 +1,54 @@
-<h1>{{ title }}</h1>
+<!-- <h1>{{ title }}</h1>
 <h3>
   {{ unContact.name }}
   <small>
     {{ unContact.username }}
   </small>
-</h3>
+</h3> -->
+
+<div class="container">
+  <header class="mb-4">
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="navbar-header">
+        <a href="/" class="navbar-brand">
+          {{ title }}
+        </a>
+      </div> <!-- /.navbar-header-->
+    </nav> <!-- /.nav-->
+  </header> <!-- /.header-->
+  <div class="row">
+    <!-- liste des contacts -->
+    <div class="col-sm-4">
+      <div class="list-group">
+        <a href="#"
+           class="list-group-item list-group-item-action"
+           *ngFor="let contact of mesContacts" (click)="displayProfile(contact)" [class.active]="contactActif === contact">
+          <!--ngfor est une boucle qui se met directement dans l'HTML, dans la balise que je veux répéter-->
+          {{ contact.name }}
+        </a>
+      </div> <!--list-group-->
+    </div> <!--col-sm-4-->
+
+    <!-- Profil de mon utilisateur -->
+    <div class="col-sm-8">
+      <div class="jumbotron" *ngIf="contactActif">
+        <h1 class="display-4"> {{ contactActif.name }}</h1>
+        <p class="lead"> {{ contactActif.username }}</p>
+        <hr class="my-4 mt-4">
+        <input type="text" [(ngModel)]="contactActif.name" class="form-control">
+        <a class="btn btn-lg" href="#" role="button">En savoir plus sur moi</a>
+      </div>
+      <div class="jumbotron" *ngIf="!contactActif">  <!--cette div ne sera exécutée que s'il n'y a pas de contact
+                                                     encore cliqué (donc au chargement de la page uniquement-->
+        <h1 class="display-4">Bienvenue</h1>
+        <p class="lead">Choisissez un contact</p>
+        <hr class="my-4">
+      </div>
+
+    </div>
+  </div> <!-- /.row -->
+
+
+
+</div> <!-- /.container-->
+
