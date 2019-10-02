@@ -1,0 +1,66 @@
+<form #formulaire="ngForm" (ngSubmit)="submitcontact(); formulaire.reset()">
+
+  <!--Grâce à la variable locale #formulaire je peux connaître l'état
+  de validation de mon formulaire (fonction spéciale Angular)-->
+
+  <h5 class="text-center m-4">
+    Ajouter un Contact
+  </h5>
+
+  <pre>
+    {{ formulaire.valid }}
+    {{ nouveauContact | json }}
+
+  </pre>
+
+  <!--Champs name-->
+  <div class="form-group">
+    <input type="text"
+           name="name"
+           #name="ngModel"
+           [(ngModel)]="nouveauContact.name"
+           [class.is-invalid]="name.touched && name.invalid"
+           placeholder="Saisissez le nom complet"
+           class="form-control"
+           required>
+    <!--ngModel permet de récupérer les valeurs entrées dans le champs input
+    et de les mettre dans mon model (ma base de donnée). C'est angular qui
+    met cette fonction à notre disposition, je ne peux pas lui donner un
+    autre nom-->
+    <div class="invalid-feedback">
+      Veuillez saisir votre nom complet
+    </div>
+
+  </div>
+  <!--Champs username-->
+  <div class="form-group">
+    <input type="text"
+           name="username"
+           #username="ngModel"
+           [(ngModel)]="nouveauContact.username"
+           [class.is-invalid]="username.touched && username.invalid"
+           placeholder="Saisissez le pseudo"
+           class="form-control"
+           required>
+    <!--"class.is-invalid" sera effective que si l'input a été touché mais est resté vid (invalid)'-->
+    <div class="invalid-feedback">
+      Veuillez saisir votre pseudo
+    </div>
+
+  </div>
+  <!--Champs email-->
+  <div class="form-group">
+    <input type="email"
+           name="email"
+           #email="ngModel"
+           [(ngModel)]="nouveauContact.email"
+           [class.is-invalid]="email.touched && email.invalid"
+           placeholder="Saisissez l'email"
+           class="form-control"
+           required>
+    <div class="invalid-feedback">
+      Veuillez saisir votre email
+    </div>
+  </div>
+  <button [disabled]="formulaire.invalid" class="btn btn-block">Créer le contact</button>
+</form>

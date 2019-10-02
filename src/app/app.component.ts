@@ -71,4 +71,10 @@ mesContacts: ContactStructure[] = [ // De base ContactStructure est un simple ob
 
     // le this permet de désigner la class où nous sommes, à savoir AppComponent.
   }
+
+  //le nouveau contact qui est récupéré depuis le composant New Comp
+
+  addContact(nouveauContactSortiDuNewComposant: any) {
+    this.mesContacts.push (nouveauContactSortiDuNewComposant);
+  }
 }

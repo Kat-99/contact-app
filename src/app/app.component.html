@@ -8,7 +8,7 @@
 
 <div class="container">
   <header class="mb-4">
-    <nav class="navbar navbar-dark bg-dark">
+    <nav class="navbar navbar-dark">
       <div class="navbar-header">
         <a href="/" class="navbar-brand">
           {{ title }}
@@ -27,26 +27,19 @@
           {{ contact.name }}
         </a>
       </div> <!--list-group-->
+
+      <app-new (newContactEvent)="addContact($event)"></app-new>
+
     </div> <!--col-sm-4-->
 
     <!-- Profil de mon utilisateur -->
     <div class="col-sm-8">
-      <div class="jumbotron" *ngIf="contactActif">
-        <h1 class="display-4"> {{ contactActif.name }}</h1>
-        <p class="lead"> {{ contactActif.username }}</p>
-        <hr class="my-4 mt-4">
-        <input type="text" [(ngModel)]="contactActif.name" class="form-control">
-        <a class="btn btn-lg" href="#" role="button">En savoir plus sur moi</a>
-      </div>
-      <div class="jumbotron" *ngIf="!contactActif">  <!--cette div ne sera exécutée que s'il n'y a pas de contact
-                                                     encore cliqué (donc au chargement de la page uniquement-->
-        <h1 class="display-4">Bienvenue</h1>
-        <p class="lead">Choisissez un contact</p>
-        <hr class="my-4">
+       <app-profil [contactProfil]="contactActif"></app-profil> <!--Il s'agit du sélecteur du fichier profil.component.ts (définie en haut du
+                                  profil.component.ts, à 'selector'). En faisant une balise avec le sélecteur, je dis à
+                                  mon HTML de 'coller' ici tout ce qu'il y a dans mon fichier profil.component.ts-->
       </div>
 
     </div>
-  </div> <!-- /.row -->
 
 
 

@@ -1,0 +1,9 @@
+.btn:hover:enabled {background-color: #863b8a; color:#ffffff;}
+/**
+:enabled permet d'activer le hover seulement quand le bouton est activé dans le HTML.
+J'ai mis dans l'HTML que le bouton doit être disabled si mon formulaire est invalide.
+Donc, lorsqu'il sera disabled, ce style là (.btn:hover:enabled) ne sera pas appliqué.
+ */
+
+.btn {background-color: #ffffff; color:#863b8a;border-color:#863b8a; border-width: 2px; font-weight: 600}
+input:hover {border-color: #863b8a}
